@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <title>AI Engineer Learning Hub</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
+      <div class="auth-card">
+        <div class="brand-mark auth-mark" aria-hidden="true">✦</div>
+        <div class="eyebrow">YOUR PERSONAL STUDY SPACE</div>
+        <h1 id="auth-title">Welcome to AI Engineer Learning Hub</h1>
+        <p class="auth-intro">Register or sign in to sync your learning progress across devices.</p>
+        <div class="auth-tabs" role="group" aria-label="Account action">
+          <button type="button" class="auth-tab active" id="auth-register-tab" aria-pressed="true">Register</button>
+          <button type="button" class="auth-tab" id="auth-login-tab" aria-pressed="false">Sign in</button>
+        </div>
+        <form id="auth-form">
+          <label class="auth-field" id="auth-name-field">Display name
+            <input id="auth-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+          </label>
+          <label class="auth-field">Email
+            <input id="auth-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </label>
+          <label class="auth-field">Password
+            <input id="auth-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </label>
+          <p class="auth-hint" id="auth-hint">Use at least 8 characters. Your password is managed by Supabase.</p>
+          <button type="submit" class="button primary auth-submit" id="auth-submit">Create account</button>
+        </form>
+        <p class="auth-status" id="auth-status" role="status" aria-live="polite" hidden></p>
+        <div class="auth-storage-note">
+          <strong>Account and progress storage</strong>
+          <p>Supabase manages passwords and syncs progress under your account. Configure this site's project URL and publishable key before use; see SUPABASE_SETUP.md. JSON backup files are optional and should be kept private.</p>
+        </div>
+      </div>
+    </section>
+    <div class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">✦</div>
+          <div><strong>AI Engineer</strong><span>Learning Hub</span></div>
+          <button class="icon-button mobile-only" id="close-sidebar" aria-label="Close navigation">×</button>
+        </div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="lesson-search" type="search" placeholder="Search lessons and concepts" aria-label="Search lessons and concepts" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="dashboard"><span>▦</span> Dashboard</button>
+          <button class="nav-item" data-view="curriculum"><span>☷</span> Course curriculum</button>
+          <div class="nav-label">YOUR LIBRARY</div>
+          <button class="nav-item" data-view="supplementary"><span>⌘</span> Technical reference</button>
+          <button class="nav-item" data-view="interviews"><span>◇</span> Interview preparation</button>
+          <button class="nav-item" data-view="glossary"><span>▤</span> Glossary</button>
+          <button class="nav-item" data-view="revision"><span>↻</span> Quick revision</button>
+        </nav>
+        <div class="sidebar-heading">
+          <span>COURSE OUTLINE</span>
+          <button class="text-button" id="expand-all" title="Expand all sections">Expand</button>
+        </div>
+        <div class="course-outline" id="course-outline"></div>
+        <div class="sidebar-footer">
+          <div class="profile-avatar" id="profile-avatar">A</div>
+          <div class="profile-copy"><strong id="profile-name">My learning space</strong><span>Progress syncs when online</span></div>
+          <button class="icon-button" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle theme">☾</button>
+        </div>
+        <div class="account-actions">
+          <button class="account-action" id="backup-export" type="button">⇩ Download JSON</button>
+          <label class="account-action" for="backup-import">⇧ Restore JSON</label>
+          <input id="backup-import" type="file" accept="application/json,.json" hidden>
+          <button class="account-action account-logout" id="logout" type="button">Sign out</button>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="icon-button mobile-only" id="open-sidebar" aria-label="Open navigation">☰</button>
+          <div class="breadcrumbs" id="breadcrumbs">Learning space <span>/</span> Dashboard</div>
+          <div class="top-actions">
+            <button class="top-link" data-view="revision">Quick revision</button>
+            <button class="theme-mobile icon-button" id="theme-toggle-mobile" aria-label="Toggle theme">☾</button>
+          </div>
+        </header>
+        <div class="content-wrap">
+          <div class="app-status" id="app-status" role="status" aria-live="polite" hidden></div>
+          <div class="access-note" role="note">
+            <span class="note-icon">i</span>
+            <p><strong>Curriculum source note</strong> The supplied transcript lists 77 sections and 600 lecture, quiz, and practice titles (including repeated titles); its header reports 448 lectures. All listed items are retained in order. Suggested additions are labeled separately.</p>
+            <button class="icon-button note-dismiss" aria-label="Dismiss notice">×</button>
+          </div>
+          <div id="page-content" aria-live="polite"></div>
+          <footer class="page-footer">Made for steady learning <span>·</span> Progress syncs with your account when online</footer>
+        </div>
+      </main>
+      <div class="mobile-scrim" id="mobile-scrim"></div>
+    </div>
+    <script src="supabase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
